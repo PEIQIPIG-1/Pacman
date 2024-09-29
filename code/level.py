@@ -23,11 +23,11 @@ class Level:
         for row, line in enumerate(lines):
             for col, c in enumerate(line):
                 if c == '%':
-                    self.walls_locs.append((row, col))
+                    self.walls_locs.append((col, row))
                 elif c == '.':
-                    self.beans_locs.append((row, col))
+                    self.beans_locs.append((col, row))
                 elif c == 'W' or c == 'X' or c == 'Y' or c == 'Z':
-                    self.ghosts_locs.append((row, col))
+                    self.ghosts_locs.append((col, row))
                 elif c == 'P':
-                    self.pacman_loc = (row, col)
+                    self.pacman_loc = (col, row)
 

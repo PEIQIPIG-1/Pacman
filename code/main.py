@@ -1,11 +1,14 @@
 import sys
+
 import pygame
+
 from settings import Settings
 from pacman import Pacman
 from ghost import Ghost
 from level import Level
 from wall import Wall
 from bean import Bean
+from game_stats import GameStats
 
 
 class Game:
@@ -25,6 +28,9 @@ class Game:
             (self.settings.screen_width, self.settings.screen_height)
         )
         pygame.display.set_caption("Pacman")
+
+
+
         self.level_num = 1
         self.level = Level(self)
         self.start_loc = self.level.start_loc
@@ -37,6 +43,9 @@ class Game:
         self._create_beans()
         self._create_ghosts()
 
+        # Store game stats
+        self.stats = GameStats(self)
+
     def run_game(self):
         """Start game main loop"""
         while True:
@@ -44,6 +53,8 @@ class Game:
             self._check_events()
             # Refresh pacman
             self.pacman.update()
+            # Refresh beans
+            self._update_beans()
             # Refresh ghosts
             self._update_ghosts()
             # Refresh screen
@@ -94,6 +105,22 @@ class Game:
         """Keyup events"""
         if event.key == pygame.K_q:
             sys.exit()
+
+    def _update_beans(self):
+        """Update beans if they have been eaten"""
+        # Check for collision between Pacman and beans
+        collided_beans = pygame.sprite.spritecollide(self.pacman, self.beans, False)
+
+        # If there is collided beans, pacman will eat them
+        if collided_beans:
+            for bean in collided_beans:
+                # Remove the bean
+                bean.kill()
+                # Number of bean minus 1
+                self.stats.beans_left -= 1
+                # Get Score
+                self.stats.score += self.settings.eat_bean
+
 
     def _update_ghosts(self):
         self.ghosts.update()

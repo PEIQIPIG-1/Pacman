@@ -20,3 +20,7 @@ class Settings:
 
         # Bean settings
         self.bean_size = 16
+
+        # Score settings
+        self.eat_bean = 10
+        self.eaten_by_ghost = -500
