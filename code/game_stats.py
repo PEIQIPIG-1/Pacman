@@ -10,5 +10,6 @@ class GameStats():
         """Initialize information that may be changed during game"""
         self.score = 0
         self.beans_left = len(self.game.beans)
+        self.pacman_life = self.settings.pacman_life
 
 

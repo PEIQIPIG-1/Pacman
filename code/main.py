@@ -13,6 +13,7 @@ from game_stats import GameStats
 
 class Game:
     """Class that manages game resources and actions"""
+
     def __init__(self):
         """Initialize game and create game resources"""
         pygame.init()
@@ -29,10 +30,9 @@ class Game:
         )
         pygame.display.set_caption("Pacman")
 
-
-
         self.level_num = 1
         self.level = Level(self)
+        self.distances_dist = {}
         self.start_loc = self.level.start_loc
         self.walls = pygame.sprite.Group()
         self.beans = pygame.sprite.Group()
@@ -59,6 +59,8 @@ class Game:
             self._update_ghosts()
             # Refresh screen
             self._update_screen()
+
+    # def _initialize_distances_dict(self):
 
     def _create_walls(self):
         for wall_loc in self.level.walls_locs:
@@ -119,11 +121,27 @@ class Game:
                 # Number of bean minus 1
                 self.stats.beans_left -= 1
                 # Get Score
-                self.stats.score += self.settings.eat_bean
-
+                self.stats.score += self.settings.eat_bean_score
 
     def _update_ghosts(self):
+        # Update ghosts' position
         self.ghosts.update()
+
+        # Check collision between ghosts and pacman
+        if pygame.sprite.spritecollideany(self.pacman, self.ghosts):
+            self._pacman_eaten()
+
+    def _pacman_eaten(self):
+        """Response when pacman is eaten by ghost"""
+        # Pacman's life-1
+        self.stats.pacman_life -= 1
+        # Update Score
+        self.stats.score += self.settings.eaten_by_ghost_score
+        # Reset ghosts
+        self.ghosts.empty()
+        self._create_ghosts()
+        # Reset pacman
+        self.pacman = Pacman(self, self.level.pacman_loc)
 
     def _update_screen(self):
         """Refresh screen"""

@@ -13,14 +13,15 @@ class Settings:
 
         # Pacman settings
         self.pacman_speed = 0.1
+        self.pacman_life = 3
 
         # Ghost settings
-        self.ghost_speed = 0.5
+        self.ghost_speed = 0.05
         self.ghost_num = 4
 
         # Bean settings
         self.bean_size = 16
 
         # Score settings
-        self.eat_bean = 10
-        self.eaten_by_ghost = -500
+        self.eat_bean_score = 10
+        self.eaten_by_ghost_score = -500
