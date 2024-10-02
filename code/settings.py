@@ -16,7 +16,7 @@ class Settings:
         self.pacman_life = 3
 
         # Ghost settings
-        self.ghost_speed = 0.05
+        self.ghost_speed = 0.08
         self.ghost_num = 4
 
         # Bean settings

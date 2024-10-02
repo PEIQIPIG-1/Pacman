@@ -9,6 +9,7 @@ from level import Level
 from wall import Wall
 from bean import Bean
 from game_stats import GameStats
+from resources import Resources
 
 
 class Game:
@@ -18,6 +19,7 @@ class Game:
         """Initialize game and create game resources"""
         pygame.init()
         self.settings = Settings()
+        self.resources = Resources()
 
         # Full screen mode
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
