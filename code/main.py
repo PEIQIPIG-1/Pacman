@@ -118,6 +118,8 @@ class Game:
         # If there is collided beans, pacman will eat them
         if collided_beans:
             for bean in collided_beans:
+                # Play sound
+                self.resources.sounds['eat_bean'].play()
                 # Remove the bean
                 bean.kill()
                 # Number of bean minus 1
