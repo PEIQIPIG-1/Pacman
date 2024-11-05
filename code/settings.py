@@ -12,11 +12,11 @@ class Settings:
         self.block_size = 32
 
         # Pacman settings
-        self.pacman_speed = 0.1
+        self.pacman_speed = 1
         self.pacman_life = 3
 
         # Ghost settings
-        self.ghost_speed = 0.08
+        self.ghost_speed = 0.5
         self.ghost_num = 4
 
         # Bean settings

@@ -11,7 +11,7 @@ class Bean(Sprite):
         self.bean_size = self.settings.bean_size
         self.block_size = self.settings.block_size
         # Load ghost images and set their rect attributes
-        self.image = pygame.image.load('../images/bean_sprites/bean.png')
+        self.image = game.resources.images['bean'][0]
         self.rect = self.image.get_rect()
 
         # Set ghost's location

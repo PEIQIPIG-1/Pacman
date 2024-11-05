@@ -9,9 +9,8 @@ class Wall(Sprite):
         super().__init__()
         self.screen = game.screen
         self.settings = game.settings
-
         # Load ghost images and set their rect attributes
-        self.image = pygame.image.load('../images/wall_sprites/wall.png')
+        self.image = game.resources.images['wall'][0]
         self.rect = self.image.get_rect()
 
         # Set ghost's location

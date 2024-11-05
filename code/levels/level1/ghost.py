@@ -14,7 +14,7 @@ class Ghost(Sprite):
         self.game = game
 
         # Load ghost images and set their rect attributes
-        self.images = game.resources.ghost_images
+        self.images = game.resources.images
         self.image = self.images['blue_ghost_moving_left'][0]
         self.rect = self.image.get_rect()
 

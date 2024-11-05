@@ -14,10 +14,10 @@ class Pacman(Sprite):
         self.settings = game.settings
 
         # Load pacman images for animation
-        self.images = game.resources.pacman_images
-        self.rect = self.images['pacman_moving'][0].get_rect()
+        self.images = game.resources.images['pacman_moving']
+        self.rect = self.images[0].get_rect()
 
-        # Initialize pacman at the mid-bottom of the screen
+        # Initialize pacman
         self.rect.x = location[0] * self.settings.block_size + game.start_loc[0]
         self.rect.y = location[1] * self.settings.block_size + game.start_loc[1]
 
@@ -94,12 +94,12 @@ class Pacman(Sprite):
         if current_time - self.last_update > self.animation_time:
             # Time to change the frame
             self.last_update = current_time
-            self.frame_index = (self.frame_index + 1) % len(self.images['pacman_moving'])
+            self.frame_index = (self.frame_index + 1) % len(self.images)
 
     def blitme(self):
         """Draw pacman with animation"""
         # Get the current frame of the animation
-        image = self.images['pacman_moving'][self.frame_index]
+        image = self.images[self.frame_index]
 
         # Rotate the image based on the direction Pacman is moving
         if self.direction == 'right':
